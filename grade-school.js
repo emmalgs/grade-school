@@ -1,15 +1,18 @@
-//
-// This is only a SKELETON file for the 'Grade School' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
-
 export class GradeSchool {
-  roster() {
-    throw new Error('Remove this statement and implement this function');
+  constructor() {
+    this._roster = {};
   }
 
-  add() {
-    throw new Error('Remove this statement and implement this function');
+  roster() {
+    return this._roster;
+  }
+
+  add(student, grade) {
+    if (this.roster()[grade] === undefined) {
+      this._roster[grade] = [student];
+    } else if (!this.roster()[grade].includes(student)) {
+      this._roster[grade].push(student);
+    }
   }
 
   grade() {
