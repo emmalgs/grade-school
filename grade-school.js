@@ -6,14 +6,18 @@ export class GradeSchool {
   }
 
   add(student, grade) {
-    const alreadyExists = Object.values(this.roster()).some(students => students.includes(student));
-    if (!alreadyExists) {
-      if (this.roster()[grade] === undefined) {
-        this._roster[grade] = [student];
-      } else {
-        this._roster[grade].push(student);
-        this._roster[grade].sort();
+    const currentRoster = this.roster()
+    for (const key in currentRoster) {
+      if (currentRoster[key].includes(student) && key !== grade) {
+        this._roster[key] = this._roster[key].filter(s => s !== student)
       }
+    }
+
+    if (this.roster()[grade] === undefined) {
+      this._roster[grade] = [student];
+    } else {
+      this._roster[grade].push(student);
+      this._roster[grade].sort();
     }
   }
 
