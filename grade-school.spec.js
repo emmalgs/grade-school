@@ -35,7 +35,7 @@ describe('School', () => {
     expect(school.roster()).toEqual(expectedDb);
   });
 
-  xtest('grade returns the students in that grade in alphabetical order', () => {
+  test('grade returns the students in that grade in alphabetical order', () => {
     school.add('Franklin', 5);
     school.add('Bradley', 5);
     school.add('Jeff', 1);

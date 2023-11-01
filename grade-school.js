@@ -4,7 +4,7 @@ export class GradeSchool {
   }
 
   roster() {
-    return this._roster;
+    return { ...this._roster };
   }
 
   add(student, grade) {
@@ -15,7 +15,8 @@ export class GradeSchool {
     }
   }
 
-  grade() {
-    throw new Error('Remove this statement and implement this function');
+  grade(grade) {
+    const students = this.roster()[grade] || [];
+    return students.sort();
   }
 }
