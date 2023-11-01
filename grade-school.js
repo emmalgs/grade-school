@@ -1,5 +1,4 @@
 export class GradeSchool {
-
   _roster = {};
 
   roster() {
@@ -7,11 +6,14 @@ export class GradeSchool {
   }
 
   add(student, grade) {
-    if (this.roster()[grade] === undefined) {
-      this._roster[grade] = [student];
-    } else if (!this.roster()[grade].includes(student)) {
-      this._roster[grade].push(student);
-      this._roster[grade].sort();
+    const alreadyExists = Object.values(this.roster()).some(students => students.includes(student));
+    if (!alreadyExists) {
+      if (this.roster()[grade] === undefined) {
+        this._roster[grade] = [student];
+      } else {
+        this._roster[grade].push(student);
+        this._roster[grade].sort();
+      }
     }
   }
 
@@ -22,7 +24,7 @@ export class GradeSchool {
 }
 
 function deepCopy(obj) {
-  const copy = {}
+  const copy = {};
   for (const [key, value] of Object.entries(obj)) {
     copy[key] = [...value];
   }
