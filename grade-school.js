@@ -12,11 +12,12 @@ export class GradeSchool {
       this._roster[grade] = [student];
     } else if (!this.roster()[grade].includes(student)) {
       this._roster[grade].push(student);
+      this._roster[grade].sort();
     }
   }
 
   grade(grade) {
     const students = this.roster()[grade] || [];
-    return students.sort();
+    return students;
   }
 }
