@@ -1,10 +1,9 @@
 export class GradeSchool {
-  constructor() {
-    this._roster = {};
-  }
+
+  _roster = {};
 
   roster() {
-    return { ...this._roster };
+    return deepCopy(this._roster);
   }
 
   add(student, grade) {
@@ -20,4 +19,12 @@ export class GradeSchool {
     const students = this.roster()[grade] || [];
     return students;
   }
+}
+
+function deepCopy(obj) {
+  const copy = {}
+  for (const [key, value] of Object.entries(obj)) {
+    copy[key] = [...value];
+  }
+  return copy;
 }
